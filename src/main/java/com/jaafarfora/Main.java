@@ -11,14 +11,8 @@ public class Main {
     static List<String> drugs = Arrays.stream(Drug.values()).map(Enum::toString).toList();
 
     public static void main(String[] args) {
-        statesResult.put(State.F, 0);
-        statesResult.put(State.H, 0);
-        statesResult.put(State.D, 0);
-        statesResult.put(State.T, 0);
-        statesResult.put(State.X, 0);
-
         validateInput(args);
-        calculateState();
+        statesResult = calculateState(statesInput, drugsInput);
         displayResult(statesResult);
     }
 
@@ -45,42 +39,50 @@ public class Main {
         }
     }
 
-    private static void calculateState() {
+    public static Map<State, Integer> calculateState(List<String> statesInput, List<String> drugsInput) {
+        Map<State, Integer> result = new LinkedHashMap<>();
+        result.put(State.F, 0);
+        result.put(State.H, 0);
+        result.put(State.D, 0);
+        result.put(State.T, 0);
+        result.put(State.X, 0);
+
         if (drugsInput.contains(Drug.As.toString()) && drugsInput.contains(Drug.P.toString())) {
-            statesResult.replace(State.X, statesInput.size());
-            return;
+            result.replace(State.X, statesInput.size());
+            return result;
         }
         for (String state : statesInput) {
             if (state.equals(State.D.toString())) {
                 if (!drugsInput.contains(Drug.I.toString())) {
-                    statesResult.replace(State.X, statesResult.get(State.X) + 1);
+                    result.replace(State.X, result.get(State.X) + 1);
                 } else {
-                    statesResult.replace(State.D, statesResult.get(State.D) + 1);
+                    result.replace(State.D, result.get(State.D) + 1);
                 }
             }
             if (state.equals(State.F.toString())) {
                 if (drugsInput.contains(Drug.P.toString()) || drugsInput.contains(Drug.As.toString())) {
-                    statesResult.replace(State.H, statesResult.get(State.H) + 1);
+                    result.replace(State.H, result.get(State.H) + 1);
                 } else {
-                    statesResult.replace(State.F, statesResult.get(State.F) + 1);
+                    result.replace(State.F, result.get(State.F) + 1);
                 }
             }
             if (state.equals(State.T.toString())) {
                 if (drugsInput.contains(Drug.An.toString())) {
-                    statesResult.replace(State.H, statesResult.get(State.H) + 1);
+                    result.replace(State.H, result.get(State.H) + 1);
                 } else {
-                    statesResult.replace(State.T, statesResult.get(State.T) + 1);
+                    result.replace(State.T, result.get(State.T) + 1);
                 }
             }
             if (state.equals(State.H.toString())) {
                 if (drugsInput.contains(Drug.I.toString()) || drugsInput.contains(Drug.An.toString())) {
-                    statesResult.replace(State.F, statesResult.get(State.F) + 1);
+                    result.replace(State.F, result.get(State.F) + 1);
                 } else {
-                    statesResult.replace(State.H, statesResult.get(State.H) + 1);
+                    result.replace(State.H, result.get(State.H) + 1);
                 }
             }
 
         }
+        return result;
     }
 
     public static void displayResult(Map<State, Integer>  statesResult) {
