@@ -14,8 +14,12 @@ public class Main {
 
     public static void main(String[] args) {
         extractStatesAndDrugs(args);
-        InputsValidator.validate(statesInput, drugsInput);
-        Map<State, Integer> statesResult = HealthStateCalculator.calculateState(statesInput, drugsInput);
+
+        InputsValidator validator = new InputsValidator();
+        validator.validate(statesInput, drugsInput);
+
+        HealthStateCalculator calculator = new HealthStateCalculator();
+        Map<State, Integer> statesResult = calculator.calculateState(statesInput, drugsInput);
         displayResult(statesResult);
     }
 

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class HealthStateCalculator {
 
-    public static Map<State, Integer> calculateState(List<String> statesInput, List<String> drugsInput) {
+    public Map<State, Integer> calculateState(List<String> statesInput, List<String> drugsInput) {
         Map<State, Integer> result = new LinkedHashMap<>();
         result.put(State.F, 0);
         result.put(State.H, 0);
