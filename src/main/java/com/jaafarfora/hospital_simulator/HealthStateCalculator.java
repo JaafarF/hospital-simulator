@@ -7,14 +7,18 @@ import java.util.*;
 
 public class HealthStateCalculator {
 
-    public Map<State, Integer> calculateState(List<String> statesInput, List<String> drugsInput) {
-        Map<State, Integer> result = new LinkedHashMap<>();
+    Map<State, Integer> result;
+
+    public HealthStateCalculator() {
+        result = new LinkedHashMap<>();
         result.put(State.F, 0);
         result.put(State.H, 0);
         result.put(State.D, 0);
         result.put(State.T, 0);
         result.put(State.X, 0);
+    }
 
+    public Map<State, Integer> calculateState(List<String> statesInput, List<String> drugsInput) {
         if (drugsInput.contains(Drug.As.toString()) && drugsInput.contains(Drug.P.toString())) {
             result.replace(State.X, statesInput.size());
             return result;
