@@ -1,4 +1,4 @@
-package com.jaafarfora;
+package com.jaafarfora.hospital_simulator;
 
 import java.util.*;
 
