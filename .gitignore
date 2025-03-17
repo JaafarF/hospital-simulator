@@ -10,6 +10,7 @@ target/
 *.iml
 *.ipr
 
+.idea/misc.xml
 
 # Compiled class file
 *.class
