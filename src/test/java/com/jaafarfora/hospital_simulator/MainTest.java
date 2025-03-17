@@ -1,5 +1,6 @@
 package com.jaafarfora.hospital_simulator;
 
+import com.jaafarfora.hospital_simulator.enums.Drug;
 import com.jaafarfora.hospital_simulator.exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
 

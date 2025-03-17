@@ -9,7 +9,7 @@ import java.util.List;
 
 public class InputsValidator {
     private static final List<String> states = Arrays.stream(State.values()).map(Enum::toString).toList();
-    private static final List<String> drugs = Arrays.stream(Drug.values()).map(Enum::toString).toList();
+    private static final List<String> drugs = Arrays.stream(Drug.values()).map(Drug::getId).toList();
 
     public void validate(List<String> statesInput, List<String> drugsInput) throws InvalidInputException {
         for (String state : statesInput) {
