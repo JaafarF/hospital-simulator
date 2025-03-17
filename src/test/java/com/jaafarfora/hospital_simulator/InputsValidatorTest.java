@@ -1,5 +1,6 @@
 package com.jaafarfora.hospital_simulator;
 
+import com.jaafarfora.hospital_simulator.exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -17,8 +18,8 @@ class InputsValidatorTest {
 
         //When-Then
         assertThatThrownBy(() -> validator.validate(stateInputs, drugInputs))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessage("A health state is wrong");
+            .isInstanceOf(InvalidInputException.class)
+            .hasMessage("One or more health state inputs are wrong");
     }
 
     @Test
@@ -30,7 +31,7 @@ class InputsValidatorTest {
 
         //When-Then
         assertThatThrownBy(() -> validator.validate(stateInputs, drugInputs))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessage("A drug is wrong");
+            .isInstanceOf(InvalidInputException.class)
+            .hasMessage("One or more drug inputs are wrong");
     }
 }
